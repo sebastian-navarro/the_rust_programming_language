@@ -29,15 +29,51 @@ fn main() {
     let _f: bool = false; // with explicit type annotation
     
     // Char type
-    // Store more than ascii characters, UTF-TYPES
+    // Store more than ascii characters , UTF-TYPES
 
     let _c = 'z';
     let _z: char = 'ℤ'; // with explicit type annotation
     let _heart_eyed_cat = '😻';
 
-    // Compound type (Store more than 1 value)
+    // Compound type (Multiple values in one type)
+    // Tuple and Array
+    
+    // Tuples
+    //  Tuples have a fixed length: once declared, they cannot grow or shrink in size.
 
-    // Tuple
+    let tuple = ('z',2); // You can store two diferent types in one variable.
+    let _complex_tuple = ([1,2,3,4], ['a','b','c']);
+    let _empty_tuple = ();
+
+    println!("First value of tuple is {}", tuple.0);
+
+
+    let _tup: (i32, f64, u8) = (500, 6.4, 1);
+
+    let tup = (500, 6.4, 1);
+
+    let (_x, y, _z) = tup;
+
+    println!("The value of y is: {y}");
+
+    let mut _tuple = ('a', 5);
+    //_tuple.0 = 1; Output error mismatched types expected `char`, found `u8`
+
+    
 
     // Array
+    // Every element of an array must have the same type
+
+    let array = [3;5]; // Five times the value 3
+    let _array2 = [1,2,3,4,5];
+
+    println!("Values of array: {:?}", array); 
+
+    // If you are sure about the amount , use array instead vector
+    // Array is store in stack, Vector is store in the heap
+
+    let months = ["January", "February", "March", "April", "May", "June", "July",
+              "August", "September", "October", "November", "December"];
+
+    let _first = months[0];
 }
