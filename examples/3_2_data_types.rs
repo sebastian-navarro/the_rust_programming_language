@@ -1,3 +1,4 @@
+
 fn main() {
     // Exist two types of data SCALAR TYPE and Compound TYPE
 
