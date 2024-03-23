@@ -1,5 +1,8 @@
 pub trait Summary {
-    fn summarize(&self) -> String;
+    fn summarize_author(&self) -> String;
+    fn summarize(&self) -> String {
+        format!("(Read more from {}...)", self.summarize_author()) // Default output
+    }
 }
 
 pub struct NewsArticle {
@@ -10,6 +13,9 @@ pub struct NewsArticle {
 }
 
 impl Summary for NewsArticle {
+    fn summarize_author(&self) -> String {
+        format!("@{}", self.author)
+    }
     fn summarize(&self) -> String {
         format!("{}, by {} ({})", self.headline, self.author, self.location)
     }
@@ -23,11 +29,35 @@ pub struct Tweet {
 }
 
 impl Summary for Tweet {
+    fn summarize_author(&self) -> String {
+        format!("@{}", self.username)
+    }
     fn summarize(&self) -> String {
-        format!("{}: {}", self.username, self.content)
+        format!("(Read more from {}...)", self.summarize_author())
     }
 }
 
+
+// No verbose
+// pub fn notify(item: &impl Summary) {
+//     println!("Breaking news! {}", item.summarize());
+// }
+
+
+// Verbose mode
+pub fn notify<T: Summary>(item: &T) {
+    println!("Breaking news! {}", item.summarize());
+}
+
+// Multiple traits 
+/*
+pub fn notify<T: Summary + Display>(item: &T) {
+*/
+
+// Diferent variables with multiples traits
+/*
+fn some_function<T: Display + Clone, U: Clone + Debug>(t: &T, u: &U) -> i32 {
+*/
 
 fn main(){
     let tweet = Tweet {
