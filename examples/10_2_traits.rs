@@ -1,3 +1,5 @@
+use std::fmt::{Display, Debug};
+
 pub trait Summary {
     fn summarize_author(&self) -> String;
     fn summarize(&self) -> String {
@@ -58,6 +60,15 @@ pub fn notify<T: Summary + Display>(item: &T) {
 /*
 fn some_function<T: Display + Clone, U: Clone + Debug>(t: &T, u: &U) -> i32 {
 */
+
+/* using where to do it more readable */
+fn some_function<T, U>(t: &T, u: &U) -> i32
+where
+    T: Display + Clone,
+    U: Clone + Debug,
+{
+    todo!();
+}
 
 fn main(){
     let tweet = Tweet {
